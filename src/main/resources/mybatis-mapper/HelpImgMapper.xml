@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiangju.mapper.HelpImgMapper">
+
+    <insert id="storeImg" parameterType="HelpImg" useGeneratedKeys="true" keyProperty="imgid">
+        INSERT INTO help_img (helpid, imgUrl)
+        VALUES (#{helpid}, #{imgUrl});
+    </insert>
+
+    <select id="getHelpImgs" parameterType="Integer" resultType="String">
+        SELECT imgUrl FROM help_img
+        WHERE helpid = #{helpid};
+    </select>
+
+    <select id="getHelpHeadImg" parameterType="Integer" resultType="String">
+        SELECT imgUrl FROM help_img
+        WHERE helpid = #{helpid}
+        LIMIT 1;
+    </select>
+
+</mapper>

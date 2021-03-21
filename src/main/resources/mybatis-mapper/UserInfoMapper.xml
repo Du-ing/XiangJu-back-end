@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiangju.mapper.UserInfoMapper">
+
+    <insert id="addUserInfo" parameterType="UserInfo">
+        INSERT INTO userinfo (userid, username, gender, age, birth, company, school, phone, email, signature)
+        VALUES (#{userid}, #{username}, #{gender}, #{age}, #{birth}, #{company}, #{school}, #{phone}, #{email}, #{signature});
+    </insert>
+
+    <update id="updateUserInfo" parameterType="UserInfo">
+        UPDATE userinfo
+        SET username = #{username},
+            gender = #{gender},
+            age = #{age},
+            birth = #{birth},
+            company = #{company},
+            school = #{school},
+            phone = #{phone},
+            email = #{email},
+            signature = #{signature}
+        WHERE userid = #{userid};
+    </update>
+
+    <select id="getUserInfo" parameterType="String" resultType="UserInfo">
+        SELECT * FROM userinfo
+        WHERE userid = #{userid};
+    </select>
+
+</mapper>

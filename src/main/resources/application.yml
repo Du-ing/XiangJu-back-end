@@ -1,0 +1,24 @@
+server:
+  port: 8888
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/xiang?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  servlet:
+    multipart:
+      max-file-size: -1 #单个文件的大小
+      max-request-size: -1 #单次请求的文件的总大小
+
+mybatis:
+  mapper-locations: classpath:mybatis-mapper/*.xml
+  type-aliases-package: com.xiangju.domain
+
+#file-save-path: E:\我的学习文档\比赛\乡遇\后端\saveFiles\
+#baseUrl: http://localhost:8888/saveFiles/
+file-save-path: /Duing_App/xiangju/saveFiles/
+baseUrl: https://duing.site/saveFiles/

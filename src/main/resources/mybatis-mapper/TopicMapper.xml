@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiangju.mapper.TopicMapper">
+
+    <select id="getAllTopic" resultType="Topic">
+        SELECT * FROM topic;
+    </select>
+
+    <select id="getTopicByType" parameterType="String" resultType="Topic">
+        SELECT * FROM topic
+        WHERE `type` LIKE #{type};
+    </select>
+
+    <select id="getTopicById" resultType="Topic" parameterType="Integer">
+        SELECT * FROM topic
+        WHERE topicid = #{topicid}
+    </select>
+
+    <update id="editTopic" parameterType="Topic">
+        UPDATE topic
+        SET title = #{title},
+            `time` = #{time},
+            site = #{site},
+            `type` = #{type},
+            `likes` = #{likes},
+            comment = #{comment},
+            status = #{status}
+        WHERE topicid = #{topicid};
+    </update>
+
+    <insert id="addTopic" parameterType="Topic" useGeneratedKeys="true" keyProperty="topicid">
+        INSERT INTO topic (userid, title, `time`, site, `type`, `likes`, comment, status)
+        VALUES (#{userid}, #{title}, #{time}, #{site}, #{type}, #{likes}, #{comment}, #{status})
+    </insert>
+
+    <select id="getUserTopics" parameterType="String" resultType="Topic">
+        SELECT * FROM topic
+        WHERE userid = #{userid};
+    </select>
+
+    <!-- 存储过程 -->
+    <select id="addLike" statementType="CALLABLE" parameterType="Integer">
+        CALL add_like(#{topicid});
+    </select>
+
+    <select id="deleteLike" statementType="CALLABLE" parameterType="Integer">
+        CALL delete_like(#{topicid});
+    </select>
+
+    <select id="searchTopics" parameterType="String" resultType="Topic">
+        SELECT * FROM topic
+        WHERE title LIKE CONCAT('%', #{key}, '%')
+        ORDER BY `time` DESC;
+    </select>
+
+</mapper>

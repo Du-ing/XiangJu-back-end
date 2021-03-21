@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiangju.mapper.TaskMapper">
+
+    <insert id="addTask" parameterType="Task">
+        INSERT INTO task (helpid, userid, status, topicid)
+        VALUES (#{helpid}, #{userid}, #{status}, #{topicid});
+    </insert>
+
+    <select id="getUserTasks" parameterType="String" resultType="Task">
+        SELECT * FROM task
+        WHERE userid = #{userid};
+    </select>
+
+    <select id="getTask" parameterType="Integer" resultType="Task">
+        SELECT * FROM task
+        WHERE helpid = #{helpid};
+    </select>
+
+    <update id="submitWork" parameterType="Task">
+        UPDATE task
+        SET status = #{status},
+            topicid = #{topicid}
+        WHERE helpid = #{helpid};
+    </update>
+
+    <select id="getTaskByTopicid" parameterType="Integer" resultType="Task">
+        SELECT * FROM task
+        WHERE topicid = #{topicid};
+    </select>
+
+</mapper>

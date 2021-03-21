@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiangju.mapper.UserMapper">
+
+    <select id="getUserNum" resultType="Integer">
+        SELECT COUNT(*) FROM user;
+    </select>
+
+    <select id="getAllUser" resultType="User" parameterType="Integer">
+        SELECT * FROM user
+        LIMIT #{start}, #{num};
+    </select>
+
+    <select id="getUserById" resultType="User" parameterType="String">
+        SELECT * FROM user WHERE userid = #{userid};
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        INSERT INTO user (userid, username, headimg, gender, address, job, fans, focus, integral)
+        VALUES (#{userid}, #{username}, #{headimg}, #{gender}, #{address}, #{job}, #{fans}, #{focus}, #{integral});
+    </insert>
+
+    <delete id="deleteUserById" parameterType="String">
+        DELETE FROM user WHERE userid = #{userid};
+    </delete>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE user
+        SET username = #{username},
+            headimg = #{headimg},
+            gender = #{gender},
+            address = #{address},
+            job = #{job}
+        WHERE userid = #{userid};
+    </update>
+
+    <select id="searchUser" resultType="User" parameterType="String">
+        SELECT * FROM user WHERE username LIKE #{key};
+    </select>
+
+    <!--存储过程-->
+    <select id="addFans" parameterType="Fans">
+        CALL add_fans(#{userid}, #{fansid});
+    </select>
+
+    <select id="deleteFans" parameterType="Fans">
+        CALL delete_fans(#{userid}, #{fansid});
+    </select>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiangju.mapper.LikeTopicMapper">
+
+    <insert id="giveLike" parameterType="LikeTopic">
+        INSERT INTO like_topic (userid, topicid)
+        VALUES (#{userid}, #{topicid});
+    </insert>
+
+    <delete id="removeLike" parameterType="LikeTopic">
+        DELETE FROM like_topic
+        WHERE userid = #{userid} AND topicid = #{topicid};
+    </delete>
+
+    <select id="getLikeStatus" resultType="LikeTopic">
+        SELECT * FROM like_topic
+        WHERE userid = #{userid} AND topicid = #{topicid};
+    </select>
+
+</mapper>

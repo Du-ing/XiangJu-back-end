@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiangju.mapper.FansMapper">
+
+    <insert id="addFans" parameterType="Fans">
+        INSERT INTO fans (userid, fansid)
+        VALUES (#{userid}, #{fansid});
+    </insert>
+
+    <delete id="removeFans" parameterType="Fans">
+        DELETE FROM fans
+        WHERE userid = #{userid}
+        AND fansid = #{fansid};
+    </delete>
+
+    <select id="getUserAllFans" parameterType="String" resultType="Fans">
+        SELECT * FROM fans
+        WHERE userid = #{userid};
+    </select>
+
+    <select id="getUserAllFocus" parameterType="String" resultType="Fans">
+        SELECT * FROM fans
+        WHERE fansid = #{userid};
+    </select>
+
+    <select id="getIsFans" parameterType="Fans" resultType="Fans">
+        SELECT * FROM fans
+        WHERE userid = #{userid}
+        AND fansid = #{fansid};
+    </select>
+
+</mapper>

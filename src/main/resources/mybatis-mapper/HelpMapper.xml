@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiangju.mapper.HelpMapper">
+
+    <select id="getAllHelp" resultType="Help">
+        SELECT * FROM help;
+    </select>
+
+    <select id="getHelpById" parameterType="Integer" resultType="Help">
+        SELECT * FROM help WHERE helpid = #{helpid};
+    </select>
+
+    <update id="editHelp" parameterType="Help">
+        UPDATE help
+        SET title = #{title},
+            site = #{site},
+            `type` = #{type},
+            startime = #{startime},
+            endtime = #{endtime},
+            reward = #{reward},
+            content = #{content},
+            status = #{status}
+        WHERE helpid = #{helpid};
+    </update>
+
+    <insert id="addHelp" parameterType="Help" useGeneratedKeys="true" keyProperty="helpid">
+        INSERT INTO help (userid, title, site, `type`, startime, endtime, reward, content, status)
+        VALUES (#{userid}, #{title}, #{site}, #{type}, #{startime}, #{endtime}, #{reward}, #{content}, #{status});
+    </insert>
+
+    <select id="getUserHelps" parameterType="String" resultType="Help">
+        SELECT * FROM help
+        WHERE userid = #{userid};
+    </select>
+
+    <update id="updateHelpStatus">
+        UPDATE help
+        SET status = #{status}
+        WHERE helpid = #{helpid};
+    </update>
+
+    <select id="getHelpSort" parameterType="Map" resultType="Help">
+        SELECT * FROM help
+        WHERE startime >= #{startime}
+        AND site LIKE CONCAT('%',#{site},'%')
+        AND `type` LIKE CONCAT('%',#{type},'%')
+        AND reward BETWEEN #{min} AND #{max};
+    </select>
+
+</mapper>
