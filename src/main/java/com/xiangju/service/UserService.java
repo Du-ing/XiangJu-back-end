@@ -1,6 +1,7 @@
 package com.xiangju.service;
 
 import com.xiangju.domain.User;
+import com.xiangju.param.UserUpdateInfo;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface UserService {
     //删除指定用户
     void deleteUserById(String userid);
     //更新用户
-    void updateUser(User user);
+    void updateUser(UserUpdateInfo userInfo);
     //模糊查询用户昵称
     List<User> searchUser(String key);
     //获取用户详细信息

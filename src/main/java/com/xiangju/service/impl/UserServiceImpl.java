@@ -1,14 +1,13 @@
 package com.xiangju.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.xiangju.domain.User;
 import com.xiangju.mapper.UserMapper;
+import com.xiangju.param.UserUpdateInfo;
 import com.xiangju.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,8 +42,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
-        userMapper.updateUser(user);
+    public void updateUser(UserUpdateInfo userInfo) {
+        userMapper.updateUser(userInfo);
     }
 
     @Override

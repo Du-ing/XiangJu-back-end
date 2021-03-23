@@ -1,6 +1,7 @@
 package com.xiangju.controller;
 
 import com.xiangju.domain.User;
+import com.xiangju.param.UserUpdateInfo;
 import com.xiangju.service.UserService;
 import com.xiangju.utils.GetUseridUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserController {
             userService.addUser(user);
             return "注册成功！";
         }
-        return "此id已经被注册！";
+        return "此id已被注册！";
     }
 
     @GetMapping("/deleteUser")
@@ -48,9 +49,8 @@ public class UserController {
     }
 
     @PostMapping("/updateUser")
-    public void updateUser(@RequestBody User user){
-//        System.out.println(user.toString());
-        userService.updateUser(user);
+    public void updateUser(@RequestBody UserUpdateInfo userInfo){
+        userService.updateUser(userInfo);
     }
 
     @GetMapping("/searchUser")

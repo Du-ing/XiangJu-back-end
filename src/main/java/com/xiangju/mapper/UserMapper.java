@@ -2,6 +2,7 @@ package com.xiangju.mapper;
 
 import com.xiangju.domain.Fans;
 import com.xiangju.domain.User;
+import com.xiangju.param.UserUpdateInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,7 @@ public interface UserMapper {
 
     void deleteUserById(String userid);
 
-    void updateUser(User user);
+    void updateUser(UserUpdateInfo userInfo);
 
     List<User> searchUser(String key);
 

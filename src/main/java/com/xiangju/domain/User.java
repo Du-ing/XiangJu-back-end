@@ -17,4 +17,6 @@ public class User {
     private int fans;//粉丝
     private int focus;//关注
     private int integral;//积分
+    private String phone;//手机号
+    private String sign;//个性签名
 }

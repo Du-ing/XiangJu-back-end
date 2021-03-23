@@ -1,23 +1,22 @@
-package com.xiangju.domain;
+package com.xiangju.param;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
+/**
+ * 修改用户信息的接口参数数据
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserInfo {
+public class UserUpdateInfo {
     private String userid;
+    private String headimg;
     private String username;
     private int gender;
-    private int age;
-    private Date birth;
-    private String company;
-    private String school;
+    private String address;
+    private String job;
     private String phone;
-    private String email;
-    private String signature;
+    private String sign;
 }

@@ -19,21 +19,23 @@
     </select>
 
     <insert id="addUser" parameterType="User">
-        INSERT INTO user (userid, username, headimg, gender, address, job, fans, focus, integral)
-        VALUES (#{userid}, #{username}, #{headimg}, #{gender}, #{address}, #{job}, #{fans}, #{focus}, #{integral});
+        INSERT INTO user (userid, username, headimg, gender, address, job, fans, focus, integral, phone, sign)
+        VALUES (#{userid}, #{username}, #{headimg}, #{gender}, #{address}, #{job}, #{fans}, #{focus}, #{integral}, #{phone}, #{sign});
     </insert>
 
     <delete id="deleteUserById" parameterType="String">
         DELETE FROM user WHERE userid = #{userid};
     </delete>
 
-    <update id="updateUser" parameterType="User">
+    <update id="updateUser" parameterType="UserUpdateInfo">
         UPDATE user
         SET username = #{username},
             headimg = #{headimg},
             gender = #{gender},
             address = #{address},
-            job = #{job}
+            job = #{job},
+            phone = #{phone},
+            sign = #{sign}
         WHERE userid = #{userid};
     </update>
 

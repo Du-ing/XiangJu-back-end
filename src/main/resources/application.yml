@@ -16,7 +16,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mybatis-mapper/*.xml
-  type-aliases-package: com.xiangju.domain
+  type-aliases-package: com.xiangju.domain,;com.xiangju.param
 
 #file-save-path: E:\我的学习文档\比赛\乡遇\后端\saveFiles\
 #baseUrl: http://localhost:8888/saveFiles/
