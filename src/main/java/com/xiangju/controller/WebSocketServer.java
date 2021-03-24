@@ -1,5 +1,6 @@
 package com.xiangju.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.OnClose;
@@ -22,7 +23,7 @@ public class WebSocketServer {
     private Session session;
 
     /**
-     * 连接成功
+     * 客户端连接成功
      */
     @OnOpen
     public void onOpen(@PathParam(value = "userid") String userid, Session session) throws IOException {
@@ -36,7 +37,7 @@ public class WebSocketServer {
     }
 
     /**
-     * 连接断开
+     * 客户端连接断开
      */
     @OnClose
     public void onClose() throws IOException {
@@ -59,7 +60,8 @@ public class WebSocketServer {
      */
     @OnMessage
     public void onMessage(String data, Session session) throws IOException {
-        System.out.println(data);
+        JSONObject jsonObject = JSONObject.parseObject(data);
+        System.out.println(jsonObject.get("data"));
         session.getBasicRemote().sendText("get it!");
 
         //TODO:从data中提取需要的信息
