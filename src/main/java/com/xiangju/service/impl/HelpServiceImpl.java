@@ -82,7 +82,7 @@ public class HelpServiceImpl implements HelpService {
 
             Task task = taskMapper.getTask(help.getHelpid());
             if (null != task){
-                //求助被接单
+                //求助被接单，加入接单者的信息
                 User user = userMapper.getUserById(task.getUserid());
                 map.put("userid",user.getUserid());
                 map.put("username",user.getUsername());
@@ -105,6 +105,10 @@ public class HelpServiceImpl implements HelpService {
         String endtime = sdf.format(help.getEndtime());
         map.replace("startime",startime);
         map.replace("endtime",endtime);
+
+        //所有图片素材
+        List<String> imgs = helpImgMapper.getHelpImgs(helpid);
+        map.put("imgs", imgs);
 
         Task task = taskMapper.getTask(helpid);
         if(null != task) {

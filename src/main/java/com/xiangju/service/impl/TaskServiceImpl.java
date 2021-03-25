@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.xiangju.domain.Help;
 import com.xiangju.domain.Task;
 import com.xiangju.domain.User;
+import com.xiangju.mapper.HelpImgMapper;
 import com.xiangju.mapper.HelpMapper;
 import com.xiangju.mapper.TaskMapper;
 import com.xiangju.mapper.UserMapper;
@@ -26,6 +27,8 @@ public class TaskServiceImpl implements TaskService {
     HelpMapper helpMapper;
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    HelpImgMapper helpImgMapper;
 
     @Override
     public void addTask(Task task) {
@@ -77,6 +80,10 @@ public class TaskServiceImpl implements TaskService {
         String endtime = sdf.format(help.getEndtime());
         map.replace("startime",startime);
         map.replace("endtime",endtime);
+
+        //所有图片素材
+        List<String> imgs = helpImgMapper.getHelpImgs(helpid);
+        map.put("imgs", imgs);
 
         User user = userMapper.getUserById(help.getUserid());
         //加入求助发布者的信息

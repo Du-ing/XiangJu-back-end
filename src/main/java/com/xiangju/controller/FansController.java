@@ -3,10 +3,10 @@ package com.xiangju.controller;
 import com.xiangju.domain.Fans;
 import com.xiangju.service.FansService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/fans")
@@ -23,5 +23,15 @@ public class FansController {
     @PostMapping("/removeFans")
     public void removeFans(@RequestBody Fans fans){
         fansService.removeFans(fans);
+    }
+
+    @GetMapping("/getUserAllFans")
+    public List<Map> getUserAllFans(@RequestParam String userid){
+        return fansService.getUserAllFans(userid);
+    }
+
+    @GetMapping("/getUserAllFocus")
+    public List<Map> getUserAllFocus(@RequestParam String userid){
+        return fansService.getUserAllFocus(userid);
     }
 }
