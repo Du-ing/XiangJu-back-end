@@ -20,4 +20,9 @@
         WHERE userid = #{userid} AND topicid = #{topicid};
     </select>
 
+    <select id="getUserLikeTopics" parameterType="String" resultType="LikeTopic">
+        SELECT * FROM like_topic
+        WHERE userid = #{userid};
+    </select>
+
 </mapper>

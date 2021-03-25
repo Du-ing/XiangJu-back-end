@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface LikeTopicMapper {
@@ -13,4 +15,6 @@ public interface LikeTopicMapper {
     void removeLike(LikeTopic likeTopic);
 
     LikeTopic getLikeStatus(@Param("userid") String userid, @Param("topicid") int topicid);
+
+    List<LikeTopic> getUserLikeTopics(String userid);
 }

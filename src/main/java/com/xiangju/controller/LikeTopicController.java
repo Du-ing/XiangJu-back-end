@@ -3,10 +3,10 @@ package com.xiangju.controller;
 import com.xiangju.domain.LikeTopic;
 import com.xiangju.service.LikeTopicService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/likeTopic")
@@ -23,5 +23,10 @@ public class LikeTopicController {
     @PostMapping("/removeLike")
     public void removeLike(@RequestBody LikeTopic likeTopic){
         likeTopicService.removeLike(likeTopic);
+    }
+
+    @GetMapping("/getUserLikeTopics")
+    public List<Map> getUserLikeTopics(@RequestParam String userid){
+        return likeTopicService.getUserLikeTopics(userid);
     }
 }
