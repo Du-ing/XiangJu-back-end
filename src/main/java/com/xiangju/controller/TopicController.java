@@ -85,7 +85,6 @@ public class TopicController {
 
         Map<String, String> map = new HashMap<>();
         map.put("imgUrl", fileUrl);
-
         return map;
     }
 

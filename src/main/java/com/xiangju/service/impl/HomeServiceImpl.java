@@ -46,12 +46,20 @@ public class HomeServiceImpl implements HomeService {
 //            if(!topicImgList.isEmpty()){
 //                image = topicImgList.get(0);
 //            }
-            String image = topicImgMapper.getTopicHeadImg(topicid);
 
             Map<String,Object> map = JSONObject.parseObject(JSONObject.toJSONString(topic),Map.class);
             map.put("username",userMapper.getUserById(userid).getUsername());
             map.put("headimg",userMapper.getUserById(userid).getHeadimg());
-            map.put("image",image);
+
+            //TODO:判断是图片还是视频
+            String headimg = topicImgMapper.getTopicHeadImg(topicid);
+            int len = headimg.split("\\.").length - 1;
+            String fileType = headimg.split("\\.")[len];
+            if (fileType.equalsIgnoreCase("mp4")){
+
+            }
+
+            map.put("image",headimg);
 
             //是否点过赞
             LikeTopic likeTopic = likeTopicMapper.getLikeStatus(userid_now, topicid);
