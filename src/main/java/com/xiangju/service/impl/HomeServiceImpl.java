@@ -53,11 +53,15 @@ public class HomeServiceImpl implements HomeService {
 
             //判断是图片还是视频
             String headimg = topicImgMapper.getTopicHeadImg(topicid);
-            int len = headimg.split("\\.").length - 1;
-            String fileType = headimg.split("\\.")[len];    //截取文件后缀名，判断文件类型
-            if (fileType.equalsIgnoreCase("mp4") || fileType.equalsIgnoreCase("wav")){
-                map.put("isimg", 0);
-            } else {
+            if (null != headimg){
+                int len = headimg.split("\\.").length - 1;
+                String fileType = headimg.split("\\.")[len];    //截取文件后缀名，判断文件类型
+                if (fileType.equalsIgnoreCase("mp4") || fileType.equalsIgnoreCase("wav")){
+                    map.put("isimg", 0);
+                } else {
+                    map.put("isimg", 1);
+                }
+            }else {
                 map.put("isimg", 1);
             }
             map.put("image",headimg);
@@ -110,12 +114,20 @@ public class HomeServiceImpl implements HomeService {
 //            if (!helpImgList.isEmpty()){
 //                image = helpImgList.get(0);
 //            }
-            String image = helpImgMapper.getHelpHeadImg(helpid);
+//            String image = helpImgMapper.getHelpHeadImg(helpid);
 
             Map<String,Object> map = JSONObject.parseObject(JSONObject.toJSONString(help),Map.class);
             map.put("username", userMapper.getUserById(userid).getUsername());
             map.put("headimg",userMapper.getUserById(userid).getHeadimg());
-            map.put("image", image);
+//            map.put("image",image);
+
+            List<String> allImgs = helpImgMapper.getHelpImgs(helpid);
+            if (allImgs.size() <= 3){
+                map.put("images", allImgs);
+            } else {
+                //如果超过3张图片，则截取并返回前3张
+                map.put("images", allImgs.subList(0, 3));
+            }
 
             //格式化时间戳
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -144,12 +156,20 @@ public class HomeServiceImpl implements HomeService {
         for (Help help : helps) {
             int helpid = help.getHelpid();
             String userid = help.getUserid();
-            String image = helpImgMapper.getHelpHeadImg(helpid);
+//            String image = helpImgMapper.getHelpHeadImg(helpid);
 
             Map<String,Object> map = JSONObject.parseObject(JSONObject.toJSONString(help),Map.class);
             map.put("username", userMapper.getUserById(userid).getUsername());
             map.put("headimg",userMapper.getUserById(userid).getHeadimg());
-            map.put("image", image);
+//            map.put("image", image);
+
+            List<String> allImgs = helpImgMapper.getHelpImgs(helpid);
+            if (allImgs.size() <= 3){
+                map.put("images", allImgs);
+            } else {
+                //如果超过3张图片，则截取并返回前3张
+                map.put("images", allImgs.subList(0, 3));
+            }
 
             //格式化时间戳
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
