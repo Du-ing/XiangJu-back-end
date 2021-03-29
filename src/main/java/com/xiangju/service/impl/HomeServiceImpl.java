@@ -1,9 +1,7 @@
 package com.xiangju.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xiangju.domain.Help;
-import com.xiangju.domain.LikeTopic;
-import com.xiangju.domain.Topic;
+import com.xiangju.domain.*;
 import com.xiangju.mapper.*;
 import com.xiangju.param.HelpType;
 import com.xiangju.service.HomeService;
@@ -29,6 +27,8 @@ public class HomeServiceImpl implements HomeService {
     HelpImgMapper helpImgMapper;
     @Autowired
     LikeTopicMapper likeTopicMapper;
+    @Autowired
+    FansMapper fansMapper;
 
     /**
      * 扩展方法
@@ -51,14 +51,15 @@ public class HomeServiceImpl implements HomeService {
             map.put("username",userMapper.getUserById(userid).getUsername());
             map.put("headimg",userMapper.getUserById(userid).getHeadimg());
 
-            //TODO:判断是图片还是视频
+            //判断是图片还是视频
             String headimg = topicImgMapper.getTopicHeadImg(topicid);
             int len = headimg.split("\\.").length - 1;
-            String fileType = headimg.split("\\.")[len];
-            if (fileType.equalsIgnoreCase("mp4")){
-
+            String fileType = headimg.split("\\.")[len];    //截取文件后缀名，判断文件类型
+            if (fileType.equalsIgnoreCase("mp4") || fileType.equalsIgnoreCase("wav")){
+                map.put("isimg", 0);
+            } else {
+                map.put("isimg", 1);
             }
-
             map.put("image",headimg);
 
             //是否点过赞
@@ -83,7 +84,15 @@ public class HomeServiceImpl implements HomeService {
         List<Topic> topics = null;
         if (type.equals("推荐")){
             topics = topicMapper.getAllTopic();
-        }else {
+        } else if (type.equals("关注")){
+            //获取关注的人发布的话题
+            List<Fans> focus = fansMapper.getUserAllFocus(userid_now);
+            topics = new ArrayList<>();
+            for (Fans focu : focus) {
+                List<Topic> list = topicMapper.getUserTopics(focu.getUserid());
+                topics.addAll(list);
+            }
+        } else {
             topics = topicMapper.getTopicByType(type);
         }
         return topicToRes(topics, userid_now);
