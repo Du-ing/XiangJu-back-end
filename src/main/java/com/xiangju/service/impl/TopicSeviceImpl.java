@@ -97,6 +97,18 @@ public class TopicSeviceImpl implements TopicService {
         map.replace("time", time);
 
         String image = topicImgMapper.getTopicHeadImg(topicid);
+        //判断是图片还是视频
+        if (null != image){
+            int len = image.split("\\.").length - 1;
+            String fileType = image.split("\\.")[len];    //截取文件后缀名，判断文件类型
+            if (fileType.equalsIgnoreCase("mp4") || fileType.equalsIgnoreCase("wav")){
+                map.put("isimg", 0);
+            } else {
+                map.put("isimg", 1);
+            }
+        }else {
+            map.put("isimg", 1);
+        }
         map.put("img", image);
 
         User user = userMapper.getUserById(topic.getUserid());

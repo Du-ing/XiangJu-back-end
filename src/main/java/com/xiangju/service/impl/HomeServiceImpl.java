@@ -52,10 +52,10 @@ public class HomeServiceImpl implements HomeService {
             map.put("headimg",userMapper.getUserById(userid).getHeadimg());
 
             //判断是图片还是视频
-            String headimg = topicImgMapper.getTopicHeadImg(topicid);
-            if (null != headimg){
-                int len = headimg.split("\\.").length - 1;
-                String fileType = headimg.split("\\.")[len];    //截取文件后缀名，判断文件类型
+            String image = topicImgMapper.getTopicHeadImg(topicid);
+            if (null != image){
+                int len = image.split("\\.").length - 1;
+                String fileType = image.split("\\.")[len];    //截取文件后缀名，判断文件类型
                 if (fileType.equalsIgnoreCase("mp4") || fileType.equalsIgnoreCase("wav")){
                     map.put("isimg", 0);
                 } else {
@@ -64,7 +64,7 @@ public class HomeServiceImpl implements HomeService {
             }else {
                 map.put("isimg", 1);
             }
-            map.put("image",headimg);
+            map.put("image",image);
 
             //是否点过赞
             LikeTopic likeTopic = likeTopicMapper.getLikeStatus(userid_now, topicid);
