@@ -132,4 +132,9 @@ public class TopicSeviceImpl implements TopicService {
         }
         return map;
     }
+
+    @Override
+    public void deleteTopic(int topicid) {
+        topicMapper.deleteTopic(topicid);
+    }
 }

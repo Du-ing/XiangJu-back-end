@@ -10,7 +10,8 @@
     </select>
 
     <select id="getHelpById" parameterType="Integer" resultType="Help">
-        SELECT * FROM help WHERE helpid = #{helpid};
+        SELECT * FROM help
+        WHERE helpid = #{helpid};
     </select>
 
     <update id="editHelp" parameterType="Help">

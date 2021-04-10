@@ -27,4 +27,6 @@ public interface TopicMapper {
 
     //模糊搜索(标题)
     List<Topic> searchTopics(String key);
+
+    void deleteTopic(int topicid);
 }

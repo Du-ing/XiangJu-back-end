@@ -22,4 +22,6 @@ public interface TopicService {
     List<Map> getUserTopics(String userid);
 
     Map getTopicDetail(int topicid, String usernow_id);
+
+    void deleteTopic(int topicid);
 }

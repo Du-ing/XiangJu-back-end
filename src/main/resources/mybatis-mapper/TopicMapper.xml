@@ -56,4 +56,9 @@
         ORDER BY `time` DESC;
     </select>
 
+    <delete id="deleteTopic" parameterType="Integer">
+        DELETE FROM topic
+        WHERE topicid = #{topicid};
+    </delete>
+
 </mapper>

@@ -24,7 +24,8 @@
     </insert>
 
     <delete id="deleteUserById" parameterType="String">
-        DELETE FROM user WHERE userid = #{userid};
+        DELETE FROM user
+        WHERE userid = #{userid};
     </delete>
 
     <update id="updateUser" parameterType="UserUpdateInfo">
@@ -40,7 +41,8 @@
     </update>
 
     <select id="searchUser" resultType="User" parameterType="String">
-        SELECT * FROM user WHERE username LIKE #{key};
+        SELECT * FROM user
+        WHERE username LIKE #{key};
     </select>
 
     <!--存储过程-->

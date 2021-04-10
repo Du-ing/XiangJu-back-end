@@ -66,7 +66,7 @@ public class TopicController {
         //获取文件后缀名
         String fileType = uploadfile.getOriginalFilename().split("\\.")[len];
         //拼接成文件名
-        String fileName = "TopicImg" + Integer.toString(topicid) + "_" + Integer.toString(index) + "." + fileType;
+        String fileName = "TopicImg" + topicid + "_" + index + "." + fileType;
 
         //文件路径名
         String pathName = fileSavePath + fileName;
@@ -101,5 +101,10 @@ public class TopicController {
     @PostMapping("/getTopicDetail")
     public Map getTopicDetail(@RequestBody JSONObject jsonObject){
         return topicService.getTopicDetail(Integer.valueOf(jsonObject.get("topicid").toString()), jsonObject.get("userid").toString());
+    }
+
+    @GetMapping("/deleteTopic")
+    public void deleteTopic(@RequestParam int topicid){
+        topicService.deleteTopic(topicid);
     }
 }

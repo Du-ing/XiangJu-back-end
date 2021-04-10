@@ -59,7 +59,7 @@ public class HelpController {
         //获取文件后缀名
         String fileType = uploadfile.getOriginalFilename().split("\\.")[len];
         //拼接成文件名
-        String fileName = "helpImg" + Integer.toString(helpid) + "_" + Integer.toString(index) + "." + fileType;
+        String fileName = "HelpImg" + helpid + "_" + index + "." + fileType;
 
         //文件路径名
         String pathName = fileSavePath + fileName;
