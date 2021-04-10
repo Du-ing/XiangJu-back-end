@@ -50,5 +50,10 @@
         AND `type` LIKE CONCAT('%',#{type},'%')
         AND reward BETWEEN #{min} AND #{max};
     </select>
+    
+    <delete id="deleteHelp" parameterType="Integer">
+        DELETE FROM help
+        WHERE helpid = #{helpid};
+    </delete>
 
 </mapper>

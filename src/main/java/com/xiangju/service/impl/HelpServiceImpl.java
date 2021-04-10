@@ -119,4 +119,9 @@ public class HelpServiceImpl implements HelpService {
         }
         return map;
     }
+
+    @Override
+    public void deleteHelp(int helpid) {
+        helpMapper.deleteHelp(helpid);
+    }
 }

@@ -97,4 +97,9 @@ public class HelpController {
     public Map getHelpDetail(@RequestParam int helpid){
         return helpService.getHelpDetail(helpid);
     }
+
+    @GetMapping("/deleteHelp")
+    public void deleteHelp(@RequestParam int helpid){
+        helpService.deleteHelp(helpid);
+    }
 }

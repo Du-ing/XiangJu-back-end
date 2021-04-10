@@ -22,4 +22,6 @@ public interface HelpService {
     List<Map> getUserHelps(String userid);
 
     Map getHelpDetail(int helpid);
+
+    void deleteHelp(int helpid);
 }
