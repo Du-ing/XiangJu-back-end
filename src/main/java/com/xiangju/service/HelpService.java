@@ -23,5 +23,5 @@ public interface HelpService {
 
     Map getHelpDetail(int helpid);
 
-    void deleteHelp(int helpid);
+    void deleteHelp(int helpid, String userid);
 }

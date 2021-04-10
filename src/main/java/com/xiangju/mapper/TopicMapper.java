@@ -2,6 +2,7 @@ package com.xiangju.mapper;
 
 import com.xiangju.domain.Topic;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -28,5 +29,5 @@ public interface TopicMapper {
     //模糊搜索(标题)
     List<Topic> searchTopics(String key);
 
-    void deleteTopic(int topicid);
+    void deleteTopic(@Param("topicid") int topicid, @Param("userid") String userid);
 }

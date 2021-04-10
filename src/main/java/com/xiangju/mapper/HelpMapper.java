@@ -25,5 +25,5 @@ public interface HelpMapper {
 
     List<Help> getHelpSort(Map map);
 
-    void deleteHelp(int helpid);
+    void deleteHelp(@Param("helpid") int helpid, @Param("userid") String userid);
 }

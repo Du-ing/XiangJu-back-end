@@ -134,7 +134,7 @@ public class TopicSeviceImpl implements TopicService {
     }
 
     @Override
-    public void deleteTopic(int topicid) {
-        topicMapper.deleteTopic(topicid);
+    public void deleteTopic(int topicid, String userid) {
+        topicMapper.deleteTopic(topicid, userid);
     }
 }

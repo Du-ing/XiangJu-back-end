@@ -51,9 +51,10 @@
         AND reward BETWEEN #{min} AND #{max};
     </select>
     
-    <delete id="deleteHelp" parameterType="Integer">
+    <delete id="deleteHelp">
         DELETE FROM help
-        WHERE helpid = #{helpid};
+        WHERE helpid = #{helpid}
+        AND userid = #{userid};
     </delete>
 
 </mapper>

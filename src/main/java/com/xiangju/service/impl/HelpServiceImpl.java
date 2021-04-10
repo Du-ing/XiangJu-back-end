@@ -121,7 +121,7 @@ public class HelpServiceImpl implements HelpService {
     }
 
     @Override
-    public void deleteHelp(int helpid) {
-        helpMapper.deleteHelp(helpid);
+    public void deleteHelp(int helpid, String userid) {
+        helpMapper.deleteHelp(helpid, userid);
     }
 }

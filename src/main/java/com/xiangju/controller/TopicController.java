@@ -104,7 +104,7 @@ public class TopicController {
     }
 
     @GetMapping("/deleteTopic")
-    public void deleteTopic(@RequestParam int topicid){
-        topicService.deleteTopic(topicid);
+    public void deleteTopic(@RequestParam int topicid, @RequestParam String userid){
+        topicService.deleteTopic(topicid, userid);
     }
 }

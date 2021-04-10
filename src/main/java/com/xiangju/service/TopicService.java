@@ -23,5 +23,5 @@ public interface TopicService {
 
     Map getTopicDetail(int topicid, String usernow_id);
 
-    void deleteTopic(int topicid);
+    void deleteTopic(int topicid, String userid);
 }

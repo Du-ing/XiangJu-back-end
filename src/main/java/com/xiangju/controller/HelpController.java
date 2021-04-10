@@ -99,7 +99,7 @@ public class HelpController {
     }
 
     @GetMapping("/deleteHelp")
-    public void deleteHelp(@RequestParam int helpid){
-        helpService.deleteHelp(helpid);
+    public void deleteHelp(@RequestParam int helpid, @RequestParam String userid){
+        helpService.deleteHelp(helpid, userid);
     }
 }
