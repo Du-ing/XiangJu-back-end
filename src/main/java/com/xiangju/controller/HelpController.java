@@ -29,8 +29,7 @@ public class HelpController {
 
     @GetMapping("/getAllHelp")
     public List<Help> getAllHelp(){
-        List<Help> helps = helpService.getAllHelp();
-        return helps;
+        return helpService.getAllHelp();
     }
 
     @GetMapping("/getHelp")
@@ -84,8 +83,7 @@ public class HelpController {
 
     @GetMapping("/getHelpImgs")
     public List<String> getHelpImgs(@RequestParam int helpid){
-        List<String> imgs = helpService.getHelpImgs(helpid);
-        return imgs;
+        return helpService.getHelpImgs(helpid);
     }
 
     @GetMapping("/getUserHelps")
