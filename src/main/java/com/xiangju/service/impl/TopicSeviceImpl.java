@@ -77,8 +77,21 @@ public class TopicSeviceImpl implements TopicService {
             map.put("title",topic.getTitle());
             map.put("site",topic.getSite());
             map.put("status",topic.getStatus());
-            //获取话题封面图片
-            map.put("image",topicImgMapper.getTopicHeadImg(topic.getTopicid()));
+
+            //判断是图片还是视频
+            String image = topicImgMapper.getTopicHeadImg(topic.getTopicid());
+            if (null != image){
+                int len = image.split("\\.").length - 1;
+                String fileType = image.split("\\.")[len];    //截取文件后缀名，判断文件类型
+                if (fileType.equalsIgnoreCase("mp4") || fileType.equalsIgnoreCase("wav")){
+                    map.put("isimg", 0);
+                } else {
+                    map.put("isimg", 1);
+                }
+            }else {
+                map.put("isimg", 1);
+            }
+            map.put("image",image);
 
             res.add(map);
         }
