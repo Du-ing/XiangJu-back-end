@@ -1,5 +1,6 @@
 server:
-  port: 8888
+  port: 9999
+  max-http-header-size: 8192
 
 spring:
   datasource:
@@ -22,3 +23,4 @@ mybatis:
 #baseUrl: http://localhost:8888/saveFiles/
 file-save-path: /Duing_App/xiangju/saveFiles/
 baseUrl: https://duing.site/saveFiles/
+
