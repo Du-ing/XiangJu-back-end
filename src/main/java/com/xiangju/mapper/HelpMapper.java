@@ -13,6 +13,8 @@ import java.util.Map;
 public interface HelpMapper {
     List<Help> getAllHelp();
 
+    List<Help> getPassHelp();
+
     Help getHelpById(int helpid);
 
     void editHelp(Help help);
@@ -26,4 +28,6 @@ public interface HelpMapper {
     List<Help> getHelpSort(Map map);
 
     void deleteHelp(@Param("helpid") int helpid, @Param("userid") String userid);
+
+    List<Help> searchHelpsByManage(String key);
 }

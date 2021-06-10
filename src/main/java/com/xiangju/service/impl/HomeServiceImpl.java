@@ -87,7 +87,7 @@ public class HomeServiceImpl implements HomeService {
     public List<Map> home(String userid_now, String type) {
         List<Topic> topics = null;
         if (type.equals("推荐")){
-            topics = topicMapper.getAllTopic();
+            topics = topicMapper.getPassTopic();
         } else if (type.equals("关注")){
             //获取关注的人发布的话题
             List<Fans> focus = fansMapper.getUserAllFocus(userid_now);
@@ -104,7 +104,7 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public List<Map> helpHome() {
-        List<Help> helps = helpMapper.getAllHelp();
+        List<Help> helps = helpMapper.getPassHelp();
         List<Map> res = new ArrayList<>();
         for (Help help : helps) {
             int helpid = help.getHelpid();
@@ -160,7 +160,7 @@ public class HomeServiceImpl implements HomeService {
 
             Map<String,Object> map = JSONObject.parseObject(JSONObject.toJSONString(help),Map.class);
             map.put("username", userMapper.getUserById(userid).getUsername());
-            map.put("headimg",userMapper.getUserById(userid).getHeadimg());
+            map.put("headimg", userMapper.getUserById(userid).getHeadimg());
 //            map.put("image", image);
 
             List<String> allImgs = helpImgMapper.getHelpImgs(helpid);

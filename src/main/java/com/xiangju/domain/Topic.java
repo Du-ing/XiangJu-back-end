@@ -22,5 +22,5 @@ public class Topic {
     private String type;
     private int likes;
     private int comment;
-    private int status; //0：未审核，1：通过，2：未通过
+    private int status;
 }

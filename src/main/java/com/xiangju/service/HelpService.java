@@ -9,6 +9,8 @@ import java.util.Map;
 public interface HelpService {
     List<Help> getAllHelp();
 
+    List<Help> getPassHelp();
+
     Help getHelpById(int helpid);
 
     void editHelp(Help help);
@@ -24,4 +26,6 @@ public interface HelpService {
     Map getHelpDetail(int helpid);
 
     void deleteHelp(int helpid, String userid);
+
+    List<Help> searchHelps(String key);
 }

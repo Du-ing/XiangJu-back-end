@@ -32,6 +32,11 @@ public class HelpController {
         return helpService.getAllHelp();
     }
 
+    @GetMapping("/getPassHelp")
+    public List<Help> getPassHelp(){
+        return helpService.getPassHelp();
+    }
+
     @GetMapping("/getHelp")
     public Help getHelp(@RequestParam int helpid){
         return helpService.getHelpById(helpid);
@@ -99,5 +104,10 @@ public class HelpController {
     @GetMapping("/deleteHelp")
     public void deleteHelp(@RequestParam int helpid, @RequestParam String userid){
         helpService.deleteHelp(helpid, userid);
+    }
+
+    @GetMapping("/searchHelps")
+    public List<Help> searchHelps(@RequestParam String key){
+        return helpService.searchHelps(key);
     }
 }

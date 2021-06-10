@@ -9,9 +9,15 @@
         SELECT * FROM topic;
     </select>
 
+    <select id="getPassTopic" resultType="Topic">
+        SELECT * FROM topic
+        WHERE status > 1;
+    </select>
+
     <select id="getTopicByType" parameterType="String" resultType="Topic">
         SELECT * FROM topic
-        WHERE `type` LIKE #{type};
+        WHERE `type` LIKE #{type}
+        AND status > 1;
     </select>
 
     <select id="getTopicById" resultType="Topic" parameterType="Integer">
@@ -38,7 +44,8 @@
 
     <select id="getUserTopics" parameterType="String" resultType="Topic">
         SELECT * FROM topic
-        WHERE userid = #{userid};
+        WHERE userid = #{userid}
+        AND status > 1;
     </select>
 
     <!-- 存储过程 -->
@@ -51,6 +58,13 @@
     </select>
 
     <select id="searchTopics" parameterType="String" resultType="Topic">
+        SELECT * FROM topic
+        WHERE title LIKE CONCAT('%', #{key}, '%')
+        AND status > 1
+        ORDER BY `time` DESC;
+    </select>
+
+    <select id="searchTopicsByManage" parameterType="String" resultType="Topic">
         SELECT * FROM topic
         WHERE title LIKE CONCAT('%', #{key}, '%')
         ORDER BY `time` DESC;

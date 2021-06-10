@@ -9,6 +9,11 @@
         SELECT * FROM help;
     </select>
 
+    <select id="getPassHelp" resultType="Help">
+        SELECT * FROM help
+        WHERE status > 1;
+    </select>
+
     <select id="getHelpById" parameterType="Integer" resultType="Help">
         SELECT * FROM help
         WHERE helpid = #{helpid};
@@ -48,7 +53,8 @@
         WHERE startime >= #{startime}
         AND site LIKE CONCAT('%',#{site},'%')
         AND `type` LIKE CONCAT('%',#{type},'%')
-        AND reward BETWEEN #{min} AND #{max};
+        AND reward BETWEEN #{min} AND #{max}
+        AND status > 1;
     </select>
     
     <delete id="deleteHelp">
@@ -56,5 +62,11 @@
         WHERE helpid = #{helpid}
         AND userid = #{userid};
     </delete>
+
+    <select id="searchHelpsByManage" parameterType="String" resultType="Help">
+        SELECT * FROM help
+        WHERE title LIKE CONCAT('%', #{key}, '%')
+        ORDER BY startime DESC;
+    </select>
 
 </mapper>

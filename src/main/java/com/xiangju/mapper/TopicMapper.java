@@ -12,6 +12,8 @@ import java.util.List;
 public interface TopicMapper {
     List<Topic> getAllTopic();
 
+    List<Topic> getPassTopic();
+
     List<Topic> getTopicByType(String type);
 
     Topic getTopicById(int topicid);
@@ -28,6 +30,8 @@ public interface TopicMapper {
 
     //模糊搜索(标题)
     List<Topic> searchTopics(String key);
+
+    List<Topic> searchTopicsByManage(String key);
 
     void deleteTopic(@Param("topicid") int topicid, @Param("userid") String userid);
 }

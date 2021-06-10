@@ -38,6 +38,11 @@ public class HelpServiceImpl implements HelpService {
     }
 
     @Override
+    public List<Help> getPassHelp() {
+        return helpMapper.getPassHelp();
+    }
+
+    @Override
     public Help getHelpById(int helpid) {
         return helpMapper.getHelpById(helpid);
     }
@@ -123,5 +128,10 @@ public class HelpServiceImpl implements HelpService {
     @Override
     public void deleteHelp(int helpid, String userid) {
         helpMapper.deleteHelp(helpid, userid);
+    }
+
+    @Override
+    public List<Help> searchHelps(String key) {
+        return helpMapper.searchHelpsByManage(key);
     }
 }

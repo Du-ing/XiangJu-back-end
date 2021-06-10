@@ -30,8 +30,12 @@ public class TopicController {
 
     @GetMapping("/getAllTopic")
     public List<Topic> getAllTopic(){
-        List<Topic> topics = topicService.getAllTopic();
-        return topics;
+        return topicService.getAllTopic();
+    }
+
+    @GetMapping("/getPassTopic")
+    public List<Topic> getPassTopic(){
+        return topicService.getPassTopic();
     }
 
     @GetMapping("/getTopic")
@@ -106,5 +110,10 @@ public class TopicController {
     @GetMapping("/deleteTopic")
     public void deleteTopic(@RequestParam int topicid, @RequestParam String userid){
         topicService.deleteTopic(topicid, userid);
+    }
+
+    @GetMapping("/searchTopics")
+    public List<Topic> searchTopics(@RequestParam String key){
+        return topicService.searchTopicsByManage(key);
     }
 }

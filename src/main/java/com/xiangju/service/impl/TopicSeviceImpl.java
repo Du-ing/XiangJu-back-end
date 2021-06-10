@@ -36,6 +36,11 @@ public class TopicSeviceImpl implements TopicService {
     }
 
     @Override
+    public List<Topic> getPassTopic() {
+        return topicMapper.getPassTopic();
+    }
+
+    @Override
     public Topic getTopicById(int topicid) {
         return topicMapper.getTopicById(topicid);
     }
@@ -149,5 +154,10 @@ public class TopicSeviceImpl implements TopicService {
     @Override
     public void deleteTopic(int topicid, String userid) {
         topicMapper.deleteTopic(topicid, userid);
+    }
+
+    @Override
+    public List<Topic> searchTopicsByManage(String key) {
+        return topicMapper.searchTopicsByManage(key);
     }
 }

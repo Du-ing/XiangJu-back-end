@@ -21,6 +21,5 @@ mybatis:
 
 #file-save-path: E:\我的学习文档\比赛\乡遇\后端\saveFiles\
 #baseUrl: http://localhost:8888/saveFiles/
-file-save-path: /Duing_App/xiangju/saveFiles/
-baseUrl: https://duing.site/saveFiles/
-
+file-save-path: /xiangju/saveFiles/
+baseUrl: https://xiangju.site/saveFiles/

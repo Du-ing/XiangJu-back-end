@@ -9,6 +9,8 @@ import java.util.Map;
 public interface TopicService {
     List<Topic> getAllTopic();
 
+    List<Topic> getPassTopic();
+
     Topic getTopicById(int topicid);
 
     void editTopic(Topic topic);
@@ -24,4 +26,6 @@ public interface TopicService {
     Map getTopicDetail(int topicid, String usernow_id);
 
     void deleteTopic(int topicid, String userid);
+
+    List<Topic> searchTopicsByManage(String key);
 }
